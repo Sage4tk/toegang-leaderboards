@@ -1,12 +1,16 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //import backend
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import 'firebase/firestore';
 import 'firebase/auth'
 
 import { useAuthState } from 'react-firebase-hooks/auth';
+
+//components
+import Home from './components/Home';
+import Admin from './components/Admin'
 
 firebase.initializeApp({
   apiKey: "AIzaSyCfs951YnUAaskwOqa6cjq5Uq81tpB1720",
@@ -18,10 +22,15 @@ firebase.initializeApp({
   measurementId: "G-Z90LG0ZDRQ"
 })
 
-export default function App() {
+function App() {
   return (
-    <div className="App">
-      <h1>START OF PROJECT</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/admin' element={<Admin />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
