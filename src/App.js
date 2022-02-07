@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //import backend
-import firebase from 'firebase/compat/app';
-import 'firebase/firestore';
-import 'firebase/auth'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
 
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -22,11 +22,16 @@ firebase.initializeApp({
   measurementId: "G-Z90LG0ZDRQ"
 })
 
+const auth = firebase.auth();
+
 function App() {
+  
+  const [user] = useAuthState(auth);
+
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home auth={auth}/>} />
         <Route path='/admin' element={<Admin />} />
       </Routes>
     </Router>
