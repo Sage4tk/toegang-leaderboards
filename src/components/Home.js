@@ -16,7 +16,12 @@ function UserAuth({ auth }) {
         const provider = new firebase.auth.GoogleAuthProvider();
         auth.signInWithPopup(provider);
     }
+    if (auth.currentUser) return (
+        <button onClick={() => auth.signOut()}>Sign-out</button>
+    )
+
     return (
         <button onClick={googleSignIn}>Sign-in</button>
     )
+
 }
