@@ -20,9 +20,10 @@ firebase.initializeApp({
   messagingSenderId: "838638350901",
   appId: "1:838638350901:web:0eb7f9dee235ce3271b77c",
   measurementId: "G-Z90LG0ZDRQ"
-})
+});
 
 const auth = firebase.auth();
+const firestore = firebase.firestore();
 
 function App() {
   
@@ -31,7 +32,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home auth={auth}/>} />
+        <Route path='/' element={<Home auth={auth} user={user} firestore={firestore}/>} />
         <Route path='/admin' element={<Admin />} />
       </Routes>
     </Router>
