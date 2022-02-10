@@ -33,7 +33,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home auth={auth} user={user} firestore={firestore}/>} />
-        <Route path='/admin' element={<Admin />} />
+        <Route path='/admin' element={<Admin firestore={firestore} />} />
       </Routes>
     </Router>
   );
