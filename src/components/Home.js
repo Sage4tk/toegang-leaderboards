@@ -1,6 +1,7 @@
 //backend
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 //hooks
@@ -17,7 +18,11 @@ export default function Home({ auth, user, firestore }) {
     const [board] = useCollectionData(query, {idField: 'id'});
 
     //state for needed auth info
-    const [authInfo, setAuthInfo] = useState(null);
+    const [authInfo, setAuthInfo] = useState({
+        displayName: "",
+        photoURL: "",
+        uid: ""
+    });
 
     //when login is called set the user state
     useEffect(() => {
@@ -28,7 +33,17 @@ export default function Home({ auth, user, firestore }) {
                 uid: user.uid
             })
         }
+
+        return () => {}
     }, [user])
+
+    //check if user exist in db  
+    const userQuery = usersRef.where("uid", '==', authInfo.uid);
+    const [findUser] = useCollectionData(userQuery);
+
+    // const checkUser = () => {
+    //     if (findUser.length == 0)
+    // }
 
     //const add user to db
     const joinList = async() => {
@@ -47,7 +62,7 @@ export default function Home({ auth, user, firestore }) {
             <div>
                 {board && board.map(data => (<PlayerCard data={data} key={data.uid}/>))}
             </div>
-            {user && <button onClick={joinList}>JOIN LIST</button>}
+            <AddPlayer joinList={joinList} findUser={findUser} user={user} />
         </div>
     )
 }
@@ -61,7 +76,11 @@ function UserAuth({ auth, setAuthInfo }) {
 
     //signout function
     const signOut = () => {
-        setAuthInfo(null);
+        setAuthInfo({
+            displayName: "",
+            photoURL: "",
+            uid: ""
+        });
         auth.signOut()
     }
 
@@ -80,5 +99,13 @@ function PlayerCard({data}) {
             <p>{data.user}</p>
             <p>{data.numWins}</p>
         </div>
+    )
+}
+
+function AddPlayer({ joinList, findUser, user }) {
+    if (!findUser || findUser.length === 1 || !user) return (null)
+
+    return (
+        <button onClick={joinList}>ADD</button>
     )
 }
