@@ -26,15 +26,37 @@ export default function Admin({ firestore }) {
     
     //auth check
     const [logged, setLogged] = useState(false);
+    const [wrongPass, setWrongPass] = useState(false);
+
+    const authAdmin = async(e) => {
+        e.preventDefault();
+        let data;
+        const searchAdmin = await adminRef.where('user', "==", inputText.name).get();
+        searchAdmin.forEach(doc => {
+            data = doc.data()
+        })
+
+        //validify 
+        if (!data) {
+            setWrongPass(true);
+        } else {
+            if (data.password != inputText.password) {
+                setWrongPass(true);
+            } else {
+                setLogged(true);
+            }
+        }
+    }
 
 
 
     if (!logged) return (
         <div>
-            <form onSubmit={}>
+            <form onSubmit={authAdmin}>
                 <input name="name" value={inputText.name} onChange={inputChange} />
                 <input name="password" value={inputText.password} onChange={inputChange} />
                 <button type="submit">LOG IN</button>
+                {wrongPass && <p>Invalid username or password.</p>}
             </form>
         </div>
     )
