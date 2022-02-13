@@ -89,17 +89,16 @@ function UserAuth({ auth, setAuthInfo }) {
     }
 
     if (auth.currentUser) return (
-        <button onClick={signOut}>Sign-out</button>
+        <button onClick={signOut} className="auth-button" >Sign-out</button>
     )
 
     return (
-        <button onClick={googleSignIn}>Sign-in</button>
+        <button onClick={googleSignIn} className="auth-button" >Sign-in</button>
     )
 }
 
 function PlayerCard({data, num}) {
     const podium = (arg) => {
-
         if (arg > 2) return (null)
         return (
             <img src={arg === 0 ? medal1: arg === 1 ? medal2:medal3}  className="medal" />
@@ -108,7 +107,7 @@ function PlayerCard({data, num}) {
 
     return (
         <div className="leaderboard-card">
-            {num > 2 && <p>{++num}</p>}
+            {num > 2 && <p className="leaderboard-place">{++num}</p>}
             {podium(num)}
             <p>{data.user}</p>
             <p>{data.numWins} dubs</p>

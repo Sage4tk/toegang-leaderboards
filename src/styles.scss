@@ -54,9 +54,42 @@ h1 {
 .leaderboard-card {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    
+}
+
+.home-page_board > *:not(:last-child) {
+    padding-bottom: 1rem;
+    border-bottom: 1px grey solid;
+}
+
+.leaderboard-card > *:last-child {
+    justify-self: end;
 }
 
 .medal {
     width: auto;
     height: 50px;
+}
+
+.home-page_board > *:not(:last-child) {
+    margin-bottom: 1rem;
+}
+
+.auth-button {
+    background-color: #449D44;
+    position: fixed;
+    font-size: 1.4rem;
+    padding: 1rem 1rem;
+    bottom: 10px;
+    border: none;
+    border-radius: 6px;
+}
+
+.leaderboard-place {
+    padding-left: 1.4rem;
+    font-size: 1.2rem;
+    margin-right: 0.8rem;
 }
