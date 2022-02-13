@@ -1,7 +1,6 @@
 //backend
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
 //hooks
@@ -15,7 +14,7 @@ export default function Home({ auth, user, firestore }) {
     const usersRef = firestore.collection("user");
     const query = usersRef.orderBy("numWins");
 
-    const [board] = useCollectionData(query, {idField: 'id'});
+    const [board] = useCollectionData(query);
 
     //state for needed auth info
     const [authInfo, setAuthInfo] = useState({
@@ -47,7 +46,8 @@ export default function Home({ auth, user, firestore }) {
 
     //const add user to db
     const joinList = async() => {
-        await usersRef.add({
+        //add user to db
+        const addUser = await usersRef.add({
             user: authInfo.displayName,
             avatar: authInfo.photoURL,
             uid: authInfo.uid,

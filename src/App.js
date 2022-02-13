@@ -12,6 +12,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import Home from './components/Home';
 import Admin from './components/Admin'
 
+import "./styles.scss";
+
 firebase.initializeApp({
   apiKey: "AIzaSyCfs951YnUAaskwOqa6cjq5Uq81tpB1720",
   authDomain: "toes-leaderboard.firebaseapp.com",
@@ -26,7 +28,6 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 function App() {
-  
   const [user] = useAuthState(auth);
 
   return (
