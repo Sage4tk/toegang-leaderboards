@@ -6,7 +6,10 @@ import { useEffect, useState } from "react";
 //hooks
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-//db
+//images
+import medal1 from "../img/1.svg"
+import medal2 from "../img/2.svg"
+import medal3 from "../img/3.svg"
 
 
 export default function Home({ auth, user, firestore }) {    
@@ -95,11 +98,20 @@ function UserAuth({ auth, setAuthInfo }) {
 }
 
 function PlayerCard({data, num}) {
+    const podium = (arg) => {
+
+        if (arg > 2) return (null)
+        return (
+            <img src={arg === 0 ? medal1: arg === 1 ? medal2:medal3}  className="medal" />
+        )
+    }
+
     return (
         <div className="leaderboard-card">
-            <p>{num + 1}.</p>
+            {num > 2 && <p>{++num}</p>}
+            {podium(num)}
             <p>{data.user}</p>
-            <p>{data.numWins}</p>
+            <p>{data.numWins} dubs</p>
         </div>
     )
 }

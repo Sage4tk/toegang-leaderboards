@@ -45,11 +45,18 @@ h1 {
 
 .home-page_board {
     background-color: #fff;
-    width: 700px;
+    width: 500px;
     padding: 1rem;
+    border: solid 1px #000;
+    border-radius: 4px;
 }
 
 .leaderboard-card {
     display: flex;
     flex-direction: row;
+}
+
+.medal {
+    width: auto;
+    height: 50px;
 }
