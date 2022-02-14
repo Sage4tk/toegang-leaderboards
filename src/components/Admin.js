@@ -73,12 +73,22 @@ export default function Admin({ firestore }) {
     const [board] = useCollectionData(query);
 
     if (!logged) return (
-        <div>
+        <div className="admin-login">
             <form onSubmit={authAdmin}>
-                <input name="name" value={inputText.name} onChange={inputChange} type="text" />
-                <input name="password" value={inputText.password} onChange={inputChange} type="password" />
-                <button type="submit">LOG IN</button>
-                {wrongPass && <p>Invalid username or password.</p>}
+                <h2>ADMIN LOGIN</h2>
+                <div>
+                    <label htmlFor="name">Username:</label>
+                    <input name="name" value={inputText.name} onChange={inputChange} type="text" />
+                </div>
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input name="password" value={inputText.password} onChange={inputChange} type="password" />
+                </div>
+                {wrongPass && <div><p>Invalid username or password.</p></div>}
+                <div>
+                    <button type="submit">LOG IN</button>
+                </div>
+                
             </form>
         </div>
     )

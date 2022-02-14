@@ -43,10 +43,6 @@ export default function Home({ auth, user, firestore }) {
     const userQuery = usersRef.where("uid", '==', authInfo.uid);
     const [findUser] = useCollectionData(userQuery);
 
-    // const checkUser = () => {
-    //     if (findUser.length == 0)
-    // }
-
     //const add user to db
     const joinList = async() => {
         //add user to db
@@ -119,6 +115,6 @@ function AddPlayer({ joinList, findUser, user }) {
     if (!findUser || findUser.length === 1 || !user) return (null)
 
     return (
-        <button onClick={joinList}>ADD</button>
+        <button onClick={joinList} className="add-button" >Join Board</button>
     )
 }
