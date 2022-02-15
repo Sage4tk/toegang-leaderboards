@@ -12,8 +12,12 @@ $hFont: 'Walter Turncoat', cursive;
 body {
     background-image: url("./img/128721.png");
     font-family: Arial, Helvetica, sans-serif;
+    position: relative;
 }
 
+body, html {
+    overflow-x: hidden;
+}
 
 //home page
 .home-page {
@@ -141,4 +145,84 @@ form > div {
 
 form > *:not(:last-child) {
     margin-bottom: 0.5rem;
+}
+
+.control-room {
+    height: 100vh;
+    width: 100vw;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.container {
+ padding: 1rem;
+}
+
+.control-room h2 {
+    text-align: center;
+    background-color: grey;
+    padding: 1rem;
+}
+
+.control-container > div{
+    width: 600px;
+    display: flex;
+    border: 1px grey solid;
+}
+
+.container {
+    width: 50%;
+}
+
+//404
+.notfound-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+        margin: 0;
+    }
+    a {
+        color: #fff;
+        font-size: 1.4rem;
+        text-align: center;
+    }
+}
+
+.notfound-page div {
+    display: flex;
+    flex-direction: column;
+}
+
+//repsonive media queries
+
+//phone
+@media only screen and (max-width: 768px){
+    .auth-button {
+        position: fixed;
+        bottom: 10%;
+        top: auto;
+        left: 0;
+    }
+
+
+    h1 {
+        font-size: 2rem;
+    }
+    
+    
+    .add-button {
+        position: fixed;
+        bottom: 10%;
+        top: auto;
+        left: 50%;
+    }
+    
+    .home-page_board {
+        width: 300px
+    }
 }

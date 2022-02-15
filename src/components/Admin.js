@@ -93,17 +93,24 @@ export default function Admin({ firestore }) {
         </div>
     )
     return (
-        <div>
-            <h1>Admin page</h1>
-            <div>
-                {board && board.map(data => (
-                    <div key={data.uid}>
-                        <p>{data.user}</p>
-                        <p>{data.numWins}</p>
+        <div className="control-room">
+            <div className="control-container">
+                <h2>control room</h2>
+                <div>
+                    <div className="container">
+                        {board && board.map(data => (
+                            <div key={data.uid}>
+                                <p>{data.user}</p>
+                                <p>{data.numWins}</p>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                    <div className="container">
+                        {customUser && customUser.map(data => <PlayerEdit data={data} key={data.uid} usersRef={usersRef} />)}
+                    </div>
+                </div>
+                
             </div>
-           {customUser && customUser.map(data => <PlayerEdit data={data} key={data.uid} usersRef={usersRef} />)} 
         </div>
     )
 }

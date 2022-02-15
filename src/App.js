@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 //import backend
@@ -11,6 +11,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 //components
 import Home from './components/Home';
 import Admin from './components/Admin'
+import NotFound from './components/NotFound';
 
 import "./styles.scss";
 
@@ -35,6 +36,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home auth={auth} user={user} firestore={firestore}/>} />
         <Route path='/admin' element={<Admin firestore={firestore} />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
