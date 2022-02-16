@@ -206,7 +206,8 @@ form > *:not(:last-child) {
         position: fixed;
         bottom: 10%;
         top: auto;
-        left: 0;
+        left: 50%;
+        margin-left: -100px;
     }
 
 
@@ -217,9 +218,10 @@ form > *:not(:last-child) {
     
     .add-button {
         position: fixed;
-        bottom: 10%;
+        bottom: 15%;
         top: auto;
         left: 50%;
+        margin-left: -100px;
     }
     
     .home-page_board {
