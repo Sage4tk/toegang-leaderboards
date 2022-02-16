@@ -19,6 +19,14 @@ export default function Home({ auth, user, firestore }) {
 
     const [board] = useCollectionData(query);
 
+    const [revBoard, setRevBoard] = useState([]);
+
+    useEffect(() => {
+        if(board) {
+            setRevBoard(board.reverse())
+        }
+    }, [board])
+
     //state for needed auth info
     const [authInfo, setAuthInfo] = useState({
         displayName: "",
@@ -59,7 +67,7 @@ export default function Home({ auth, user, firestore }) {
             <h1>TOES <span className="orange">SKRIBBL</span> <span className="yellow">LEADER</span><span className="orange">BOARDS</span></h1>
             
             <div className="home-page_board">
-                {board && board.map((data, index) => (<PlayerCard data={data} key={data.uid} num={index}/>))}
+                {revBoard && revBoard.map((data, index) => (<PlayerCard data={data} key={data.uid} num={index}/>))}
             </div>
             <AddPlayer joinList={joinList} findUser={findUser} user={user} />
             <UserAuth auth={auth} setAuthInfo={setAuthInfo} />
