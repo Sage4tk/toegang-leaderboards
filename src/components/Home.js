@@ -59,7 +59,7 @@ export default function Home({ auth, user, firestore }) {
             <h1>TOES <span className="orange">SKRIBBL</span> <span className="yellow">LEADER</span><span className="orange">BOARDS</span></h1>
             
             <div className="home-page_board">
-                {board && board.reverse().map((data, index) => (<PlayerCard data={data} key={data.uid} num={index}/>))}
+                {board && board.map((data, index) => (<PlayerCard data={data} key={data.uid} num={index}/>))}
             </div>
             <AddPlayer joinList={joinList} findUser={findUser} user={user} />
             <UserAuth auth={auth} setAuthInfo={setAuthInfo} />
